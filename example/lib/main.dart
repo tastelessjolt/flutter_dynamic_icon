@@ -11,7 +11,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
@@ -33,7 +32,8 @@ class _MyAppState extends State<MyApp> {
                   try {
                     print(await FlutterDynamicIcon.supportsAlternateIcons);
                     if (await FlutterDynamicIcon.supportsAlternateIcons) {
-                      await FlutterDynamicIcon.setAlternateIconName("teamfortress");
+                      await FlutterDynamicIcon.setAlternateIconName(
+                          "teamfortress");
                       _scaffoldKey.currentState.hideCurrentSnackBar();
                       _scaffoldKey.currentState.showSnackBar(SnackBar(
                         content: Text("App icon change successful"),
