@@ -1,7 +1,7 @@
 name: flutter_dynamic_icon
-description: A new flutter plugin project.
+description: A flutter plugin for dynamically changing app icon and app icon batch number
 version: 0.0.1
-author: Harshith Goka
+author: Harshith Goka <harshith9399@gmail.com>
 homepage: https://tastelessjolt.github.io
 
 environment:
