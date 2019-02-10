@@ -24,7 +24,7 @@ To integrate your plugin into the iOS part of your app, follow these steps
     * `chills@2x.png`, `chills@3x.png`,
 2. These icons shouldn't be kept in `Assets.xcassets` folder, but outside. Here is my directory structure:
 
-![directory_structure](imgs/directory_structure.png)
+![directory_structure](https://raw.githubusercontent.com/tastelessjolt/flutter_dynamic_icon/master/imgs/directory_structure.png)
 
 3. Next, we need to setup the `Info.plist`
     1. Add `Icon files (iOS 5)` to the Information Property List
@@ -38,7 +38,7 @@ Note that if you need it work for iPads, You need to add these icon declarations
 Here is my `Info.plist` after adding Alternate Icons
 #### Screenshot
 
-![info.plist](imgs/info-plist.png)
+![info.plist](https://raw.githubusercontent.com/tastelessjolt/flutter_dynamic_icon/master/imgs/info-plist.png)
 
 #### Raw
 ```xml
@@ -155,7 +155,7 @@ Check out the `example` app for more details
 
 ## Screenrecord
 
-![Screenrecording of the example](imgs/screen.gif)
+![Screenrecording of the example](https://raw.githubusercontent.com/tastelessjolt/flutter_dynamic_icon/master/imgs/screen.gif)
 
 ## Reference 
 

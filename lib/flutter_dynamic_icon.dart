@@ -16,7 +16,7 @@ class FlutterDynamicIcon {
 
   /// Fetches the current iconName 
   /// 
-  /// Return [null] if the current icon is the default icon
+  /// Returns `null` if the current icon is the default icon
   static Future<String> getAlternateIconName() async {
     final String altIconName =
         await _channel.invokeMethod('mGetAlternateIconName');
