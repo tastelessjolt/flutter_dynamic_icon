@@ -2,7 +2,7 @@
 
 * Can change batch app icon 
 
-## 0.0.1+2
+## 0.1
 
 * Update description and changelog
 
