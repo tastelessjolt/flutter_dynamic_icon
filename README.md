@@ -155,8 +155,9 @@ Check out the `example` app for more details
 
 ## Screenrecord
 
-
+![Screenrecording of the example](imgs/screen.gif)
 
 ## Reference 
 
+This was made possible because this blog. I borrowed a lot of words from this blog.
 https://medium.com/ios-os-x-development/dynamically-change-the-app-icon-7d4bece820d2
