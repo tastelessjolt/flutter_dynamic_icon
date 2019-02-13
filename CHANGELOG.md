@@ -1,6 +1,10 @@
 ## Unreleased
 
-* Can change batch app icon 
+* Nothing here
+
+## 0.2
+
+* Can change batch number on app icon 
 
 ## 0.1
 

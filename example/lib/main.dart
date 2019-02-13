@@ -11,6 +11,30 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  int batchIconNumber = 0;
+
+  String currentIconName = "?";
+
+  bool loading = false;
+
+  TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    FlutterDynamicIcon.getApplicationIconBadgeNumber().then((v) {
+      setState(() {
+        batchIconNumber = v;
+      });
+    });
+
+    FlutterDynamicIcon.getAlternateIconName().then((v) {
+      setState(() {
+        currentIconName = v ?? "`primary`";
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
@@ -20,11 +44,64 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Dynamic App Icon'),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 28),
+          child: ListView(
             children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Current batch number: $batchIconNumber",
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.display1,
+                ),
+              ),
+              TextField(
+                controller: controller,
+                inputFormatters: <TextInputFormatter>[
+                  WhitelistingTextInputFormatter(RegExp("\\d+")),
+                ],
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Set Batch Icon Number",
+                  suffixIcon: loading
+                      ? Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: CircularProgressIndicator(
+                              // strokeWidth: 2,
+                              ),
+                        )
+                      : IconButton(
+                          icon: Icon(Icons.send),
+                          onPressed: () async {
+                            setState(() {
+                              loading = true;
+                            });
+                            try {
+                              await FlutterDynamicIcon
+                                  .setApplicationIconBadgeNumber(
+                                      int.parse(controller.text));
+                              batchIconNumber = await FlutterDynamicIcon
+                                  .getApplicationIconBadgeNumber();
+                            } catch (e) {}
+                            setState(() {
+                              loading = false;
+                            });
+                          },
+                        ),
+                ),
+              ),
+              SizedBox(
+                height: 28,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Current Icon Name: $currentIconName",
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.display1,
+                ),
+              ),
               OutlineButton.icon(
                 icon: Icon(Icons.ac_unit),
                 label: Text("Team Fortress"),
@@ -38,6 +115,11 @@ class _MyAppState extends State<MyApp> {
                       _scaffoldKey.currentState.showSnackBar(SnackBar(
                         content: Text("App icon change successful"),
                       ));
+                      FlutterDynamicIcon.getAlternateIconName().then((v) {
+                        setState(() {
+                          currentIconName = v ?? "`primary`";
+                        });
+                      });
                       return;
                     }
                   } on PlatformException {} catch (e) {}
@@ -58,6 +140,11 @@ class _MyAppState extends State<MyApp> {
                       _scaffoldKey.currentState.showSnackBar(SnackBar(
                         content: Text("App icon change successful"),
                       ));
+                      FlutterDynamicIcon.getAlternateIconName().then((v) {
+                        setState(() {
+                          currentIconName = v ?? "`primary`";
+                        });
+                      });
                       return;
                     }
                   } on PlatformException {} catch (e) {}
@@ -78,6 +165,11 @@ class _MyAppState extends State<MyApp> {
                       _scaffoldKey.currentState.showSnackBar(SnackBar(
                         content: Text("App icon change successful"),
                       ));
+                      FlutterDynamicIcon.getAlternateIconName().then((v) {
+                        setState(() {
+                          currentIconName = v ?? "`primary`";
+                        });
+                      });
                       return;
                     }
                   } on PlatformException {} catch (e) {}

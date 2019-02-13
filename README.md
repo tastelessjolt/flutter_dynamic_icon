@@ -149,13 +149,28 @@ try {
   }
 } on PlatformException {} catch (e) {}
 print("Failed to change app icon");
+
+...
+
+// set batch number
+try {
+	await FlutterDynamicIcon.setApplicationIconBadgeNumber(9399);
+} on PlatformException {} catch (e) {}
+
+// gets currently set batch number
+int batchNumber = FlutterDynamicIcon.getApplicationIconBadgeNumber();
+
 ```
 
 Check out the `example` app for more details
 
 ## Screenrecord
 
+## Showing App Icon change
 ![Screenrecording of the example](https://raw.githubusercontent.com/tastelessjolt/flutter_dynamic_icon/master/imgs/screen.gif)
+
+## Showing Batch number on app icon change in SpringBoard
+![Screenrecording of the example](https://raw.githubusercontent.com/tastelessjolt/flutter_dynamic_icon/master/imgs/batch.gif)
 
 ## Reference 
 
