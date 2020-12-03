@@ -53,13 +53,13 @@ class _MyAppState extends State<MyApp> {
                 child: Text(
                   "Current batch number: $batchIconNumber",
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.display1,
+                  style: Theme.of(context).textTheme.headline4,
                 ),
               ),
               TextField(
                 controller: controller,
                 inputFormatters: <TextInputFormatter>[
-                  WhitelistingTextInputFormatter(RegExp("\\d+")),
+                  FilteringTextInputFormatter.allow(RegExp("\\d+")),
                 ],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -83,7 +83,13 @@ class _MyAppState extends State<MyApp> {
                                       int.parse(controller.text));
                               batchIconNumber = await FlutterDynamicIcon
                                   .getApplicationIconBadgeNumber();
-                            } catch (e) {}
+                            } on PlatformException {} catch (e) {}
+                            if (this.mounted) {
+                              _scaffoldKey.currentState.hideCurrentSnackBar();
+                              _scaffoldKey.currentState.showSnackBar(SnackBar(
+                                content: Text("Failed to change batch number"),
+                              ));
+                            }
                             setState(() {
                               loading = false;
                             });
@@ -99,7 +105,7 @@ class _MyAppState extends State<MyApp> {
                 child: Text(
                   "Current Icon Name: $currentIconName",
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.display1,
+                  style: Theme.of(context).textTheme.headline4,
                 ),
               ),
               OutlineButton.icon(
@@ -164,6 +170,34 @@ class _MyAppState extends State<MyApp> {
                       _scaffoldKey.currentState.hideCurrentSnackBar();
                       _scaffoldKey.currentState.showSnackBar(SnackBar(
                         content: Text("App icon change successful"),
+                      ));
+                      FlutterDynamicIcon.getAlternateIconName().then((v) {
+                        setState(() {
+                          currentIconName = v ?? "`primary`";
+                        });
+                      });
+                      return;
+                    }
+                  } on PlatformException {} catch (e) {}
+                  _scaffoldKey.currentState.hideCurrentSnackBar();
+                  _scaffoldKey.currentState.showSnackBar(SnackBar(
+                    content: Text("Failed to change app icon"),
+                  ));
+                },
+              ),
+              SizedBox(
+                height: 28,
+              ),
+              OutlineButton.icon(
+                icon: Icon(Icons.restore_outlined),
+                label: Text("Restore Icon"),
+                onPressed: () async {
+                  try {
+                    if (await FlutterDynamicIcon.supportsAlternateIcons) {
+                      await FlutterDynamicIcon.setAlternateIconName(null);
+                      _scaffoldKey.currentState.hideCurrentSnackBar();
+                      _scaffoldKey.currentState.showSnackBar(SnackBar(
+                        content: Text("App icon restore successful"),
                       ));
                       FlutterDynamicIcon.getAlternateIconName().then((v) {
                         setState(() {

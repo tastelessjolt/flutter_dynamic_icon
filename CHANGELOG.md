@@ -1,12 +1,15 @@
-## Unreleased
+## 1.0.0
 
-* Nothing here
+* Upgrade to AndroidX (both in plugin and example)
+* Upgrade to Flutter SDK 1.22.4
+* Upgrade to the new Android Platform Plugin V2
+* Fix passing `null` to `setAlternateIconName` to revert to the original icon (Fixes #2) 
 
-## 0.2
+## 0.2.0
 
 * Can change batch number on app icon 
 
-## 0.1
+## 0.1.0
 
 * Update description and changelog
 
