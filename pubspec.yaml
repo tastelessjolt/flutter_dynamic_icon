@@ -1,6 +1,6 @@
 name: flutter_dynamic_icon
 description: A flutter plugin for dynamically changing app icon and app icon batch number
-version: 1.0.0
+version: 1.1.0
 homepage: https://tastelessjolt.github.io
 repository: https://github.com/tastelessjolt/flutter_dynamic_icon
 issue_tracker: https://github.com/tastelessjolt/flutter_dynamic_icon/issues
@@ -12,23 +12,25 @@ dependencies:
   flutter:
     sdk: flutter
 
-# This section identifies this Flutter project as a plugin project.
-# The androidPackage and pluginClass identifiers should not ordinarily
-# be modified. They are used by the tooling to maintain consistency when
-# adding or updating assets for this project.
-plugin:
-    platforms:
-      android:
-        package: io.github.tastelessjolt.flutterdynamicicon
-        pluginClass: FlutterDynamicIconPlugin
-      ios:
-        pluginClass: FlutterDynamicIconPlugin
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
+  # This section identifies this Flutter project as a plugin project.
+  # The androidPackage and pluginClass identifiers should not ordinarily
+  # be modified. They are used by the tooling to maintain consistency when
+  # adding or updating assets for this project.
+  plugin:
+    platforms:
+      android:
+        package: io.github.tastelessjolt.flutterdynamicicon
+        pluginClass: FlutterDynamicIconPlugin
+      ios:
+        pluginClass: FLTDynamicIconPlugin
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
