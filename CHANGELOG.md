@@ -1,3 +1,7 @@
+## 1.1.0
+
+* Fix pubspec.yml (plugin was at the wrong place)
+
 ## 1.0.0
 
 * Upgrade to AndroidX (both in plugin and example)
