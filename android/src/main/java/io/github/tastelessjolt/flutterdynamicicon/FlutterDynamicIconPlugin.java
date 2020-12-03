@@ -1,33 +1,39 @@
 package io.github.tastelessjolt.flutterdynamicicon;
 
-import io.flutter.plugin.common.MethodCall;
+import android.content.Context;
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
-import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /** FlutterDynamicIconPlugin */
-public class FlutterDynamicIconPlugin implements MethodCallHandler {
-  /** Plugin registration. */
-  public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter_dynamic_icon");
-    channel.setMethodCallHandler(new FlutterDynamicIconPlugin());
+public class FlutterDynamicIconPlugin implements FlutterPlugin {
+  private static final String CHANNEL_NAME = "flutter_dynamic_icon";
+  private MethodChannel channel;
+
+  @SuppressWarnings("deprecation")
+  public static void registerWith(io.flutter.plugin.common.PluginRegistry.Registrar registrar) {
+    final FlutterDynamicIconPlugin plugin = new FlutterDynamicIconPlugin();
+    plugin.setupChannel(registrar.messenger(), registrar.context());
   }
 
   @Override
-  public void onMethodCall(MethodCall call, Result result) {
-    if (call.method.equals("mSupportsAlternateIcons")) {
-      result.success(false);
-    } else if (call.method.equals("mGetAlternateIconName")) {
-      result.error("Not supported", "Not supported on Android", null);
-    } else if (call.method.equals("mSetAlternateIconName")) {
-      result.error("Not supported", "Not supported on Android", null);
-    } else if (call.method.equals("mGetApplicationIconBadgeNumber")) {
-      result.error("Not supported", "Not supported on Android", null);
-    } else if (call.method.equals("mSetApplicationIconBadgeNumber")) {
-      result.error("Not supported", "Not supported on Android", null);
-    } else {
-      result.notImplemented();
-    }
+  public void onAttachedToEngine(FlutterPlugin.FlutterPluginBinding binding) {
+    setupChannel(binding.getBinaryMessenger(), binding.getApplicationContext());
   }
+
+  @Override
+  public void onDetachedFromEngine(FlutterPlugin.FlutterPluginBinding binding) {
+    teardownChannel();
+  }
+
+  private void setupChannel(BinaryMessenger messenger, Context context) {
+    channel = new MethodChannel(messenger, CHANNEL_NAME);
+    MethodCallHandlerImpl handler = new MethodCallHandlerImpl();
+    channel.setMethodCallHandler(handler);
+  }
+
+  private void teardownChannel() {
+    channel.setMethodCallHandler(null);
+    channel = null;
+  }  
 }
