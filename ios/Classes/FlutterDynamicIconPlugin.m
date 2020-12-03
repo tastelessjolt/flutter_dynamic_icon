@@ -30,6 +30,9 @@
         if (@available(iOS 10.3, *)) {
             @try {
                 NSString *iconName = call.arguments[@"iconName"];
+                if (iconName == [NSNull null]) {
+                    iconName = nil;
+                }
                 [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError * _Nullable error) {
                     if(error) {
                         result([FlutterError errorWithCode:@"Failed to set icon"
