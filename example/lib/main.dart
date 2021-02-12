@@ -116,7 +116,7 @@ class _MyAppState extends State<MyApp> {
                     print(await FlutterDynamicIcon.supportsAlternateIcons);
                     if (await FlutterDynamicIcon.supportsAlternateIcons) {
                       await FlutterDynamicIcon.setAlternateIconName(
-                          "teamfortress");
+                          "Alternative");
                       _scaffoldKey.currentState.hideCurrentSnackBar();
                       _scaffoldKey.currentState.showSnackBar(SnackBar(
                         content: Text("App icon change successful"),
