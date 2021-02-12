@@ -1,6 +1,7 @@
 package io.github.tastelessjolt.flutterdynamicicon;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -18,10 +19,12 @@ class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
     if (call.method.equals("mSupportsAlternateIcons")) {
       result.success(true);
     } else if (call.method.equals("mGetAlternateIconName")) {
-      IconChanger.getCurrentEnabledIcon(context);
+      ActivityInfo activityInfo = IconChanger.getCurrentEnabledIcon(context);
+      result.success(activityInfo.name);
     } else if (call.method.equals("mSetAlternateIconName")) {
       String iconName = call.argument("iconName");
       IconChanger.enableIcon(context, iconName);
+      IconChanger.disableIcon(context, "MainActivity");
     } else if (call.method.equals("mGetApplicationIconBadgeNumber")) {
       result.error("Not supported", "Not supported on Android", null);
     } else if (call.method.equals("mSetApplicationIconBadgeNumber")) {
