@@ -24,7 +24,8 @@ class FlutterDynamicIcon {
     return altIconName;
   }
 
-  /// Sets [iconName] as the current icon for the app
+  /// Sets [iconName] as the current icon for the app.
+  /// Pass `null` to set the default icon. 
   ///
   /// Throws a [PlatformException] with description if
   /// it can't find [iconName] or there's any other error
