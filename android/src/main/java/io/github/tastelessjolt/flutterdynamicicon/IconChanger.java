@@ -19,8 +19,11 @@ public class IconChanger {
             PackageInfo info = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_ACTIVITIES | PackageManager.GET_DISABLED_COMPONENTS);
             ActivityInfo enabled = null;
             for(ActivityInfo activityInfo: info.activities) {
-                boolean isEnabled = Helper.isComponentEnabled(pm, context.getPackageName(), activityInfo.name);
-                if(isEnabled) enabled = activityInfo;
+                // An hard coded way to get only the app activities, only way I found :(
+                if(activityInfo.name.contains(context.getPackageName())) {
+                    boolean isEnabled = Helper.isComponentEnabled(pm, context.getPackageName(), activityInfo.name);
+                    if(isEnabled) enabled = activityInfo;
+                }
             }
             return enabled;
         } catch (PackageManager.NameNotFoundException e) {
