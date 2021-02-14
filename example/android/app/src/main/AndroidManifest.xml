@@ -22,11 +22,41 @@
             </intent-filter>
         </activity>
         
-        <!-- Alternative icon configuration -->
+        <!-- Alternative icons configuration -->
         <activity-alias
-            android:name=".Alternative"
-            android:icon="@mipmap/ic_launcher"
-            android:label="Alternative"
+            android:name=".chills"
+            android:icon="@mipmap/chills"
+            android:label="Chills"
+            android:enabled="false"
+            android:targetActivity=".MainActivity">
+            <meta-data
+                android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
+                android:value="true" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".photos"
+            android:icon="@mipmap/photos"
+            android:label="Photos"
+            android:enabled="false"
+            android:targetActivity=".MainActivity">
+            <meta-data
+                android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
+                android:value="true" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".teamfortress"
+            android:icon="@mipmap/teamfortress"
+            android:label="Teamfortress"
             android:enabled="false"
             android:targetActivity=".MainActivity">
             <meta-data
