@@ -85,8 +85,8 @@ class _MyAppState extends State<MyApp> {
                                   .getApplicationIconBadgeNumber();
                             } on PlatformException {} catch (e) {}
                             if (this.mounted) {
-                              _scaffoldKey.currentState.hideCurrentSnackBar();
-                              _scaffoldKey.currentState.showSnackBar(SnackBar(
+                              _scaffoldKey.currentState?.hideCurrentSnackBar();
+                              _scaffoldKey.currentState?.showSnackBar(SnackBar(
                                 content: Text("Failed to change batch number"),
                               ));
                             }
@@ -117,8 +117,8 @@ class _MyAppState extends State<MyApp> {
                     if (await FlutterDynamicIcon.supportsAlternateIcons) {
                       await FlutterDynamicIcon.setAlternateIconName(
                           "teamfortress");
-                      _scaffoldKey.currentState.hideCurrentSnackBar();
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
+                      _scaffoldKey.currentState?.hideCurrentSnackBar();
+                      _scaffoldKey.currentState?.showSnackBar(SnackBar(
                         content: Text("App icon change successful"),
                       ));
                       FlutterDynamicIcon.getAlternateIconName().then((v) {
@@ -129,8 +129,8 @@ class _MyAppState extends State<MyApp> {
                       return;
                     }
                   } on PlatformException {} catch (e) {}
-                  _scaffoldKey.currentState.hideCurrentSnackBar();
-                  _scaffoldKey.currentState.showSnackBar(SnackBar(
+                  _scaffoldKey.currentState?.hideCurrentSnackBar();
+                  _scaffoldKey.currentState?.showSnackBar(SnackBar(
                     content: Text("Failed to change app icon"),
                   ));
                 },
@@ -142,8 +142,8 @@ class _MyAppState extends State<MyApp> {
                   try {
                     if (await FlutterDynamicIcon.supportsAlternateIcons) {
                       await FlutterDynamicIcon.setAlternateIconName("photos");
-                      _scaffoldKey.currentState.hideCurrentSnackBar();
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
+                      _scaffoldKey.currentState?.hideCurrentSnackBar();
+                      _scaffoldKey.currentState?.showSnackBar(SnackBar(
                         content: Text("App icon change successful"),
                       ));
                       FlutterDynamicIcon.getAlternateIconName().then((v) {
@@ -154,8 +154,8 @@ class _MyAppState extends State<MyApp> {
                       return;
                     }
                   } on PlatformException {} catch (e) {}
-                  _scaffoldKey.currentState.hideCurrentSnackBar();
-                  _scaffoldKey.currentState.showSnackBar(SnackBar(
+                  _scaffoldKey.currentState?.hideCurrentSnackBar();
+                  _scaffoldKey.currentState?.showSnackBar(SnackBar(
                     content: Text("Failed to change app icon"),
                   ));
                 },
@@ -167,8 +167,8 @@ class _MyAppState extends State<MyApp> {
                   try {
                     if (await FlutterDynamicIcon.supportsAlternateIcons) {
                       await FlutterDynamicIcon.setAlternateIconName("chills");
-                      _scaffoldKey.currentState.hideCurrentSnackBar();
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
+                      _scaffoldKey.currentState?.hideCurrentSnackBar();
+                      _scaffoldKey.currentState?.showSnackBar(SnackBar(
                         content: Text("App icon change successful"),
                       ));
                       FlutterDynamicIcon.getAlternateIconName().then((v) {
@@ -179,8 +179,8 @@ class _MyAppState extends State<MyApp> {
                       return;
                     }
                   } on PlatformException {} catch (e) {}
-                  _scaffoldKey.currentState.hideCurrentSnackBar();
-                  _scaffoldKey.currentState.showSnackBar(SnackBar(
+                  _scaffoldKey.currentState?.hideCurrentSnackBar();
+                  _scaffoldKey.currentState?.showSnackBar(SnackBar(
                     content: Text("Failed to change app icon"),
                   ));
                 },
@@ -195,8 +195,8 @@ class _MyAppState extends State<MyApp> {
                   try {
                     if (await FlutterDynamicIcon.supportsAlternateIcons) {
                       await FlutterDynamicIcon.setAlternateIconName(null);
-                      _scaffoldKey.currentState.hideCurrentSnackBar();
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
+                      _scaffoldKey.currentState?.hideCurrentSnackBar();
+                      _scaffoldKey.currentState?.showSnackBar(SnackBar(
                         content: Text("App icon restore successful"),
                       ));
                       FlutterDynamicIcon.getAlternateIconName().then((v) {
@@ -207,8 +207,8 @@ class _MyAppState extends State<MyApp> {
                       return;
                     }
                   } on PlatformException {} catch (e) {}
-                  _scaffoldKey.currentState.hideCurrentSnackBar();
-                  _scaffoldKey.currentState.showSnackBar(SnackBar(
+                  _scaffoldKey.currentState?.hideCurrentSnackBar();
+                  _scaffoldKey.currentState?.showSnackBar(SnackBar(
                     content: Text("Failed to change app icon"),
                   ));
                 },
