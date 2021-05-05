@@ -22,11 +22,13 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    FlutterDynamicIcon.getApplicationIconBadgeNumber().then((v) {
-      setState(() {
-        batchIconNumber = v;
+    try {
+      FlutterDynamicIcon.getApplicationIconBadgeNumber().then((v) {
+        setState(() {
+          batchIconNumber = v;
+        });
       });
-    });
+    } on PlatformException catch (e) {}
 
     FlutterDynamicIcon.getAlternateIconName().then((v) {
       setState(() {
@@ -76,7 +78,7 @@ class _MyAppState extends State<MyApp> {
       _scaffoldKey.currentState?.hideCurrentSnackBar();
       _scaffoldKey.currentState?.showSnackBar(
           SnackBar(content: Text("Batch number changed successful")));
-    } catch (e) {
+    } on PlatformException catch (e) {
       _scaffoldKey.currentState?.hideCurrentSnackBar();
       _scaffoldKey.currentState?.showSnackBar(
           SnackBar(content: Text("Failed to change batch number")));

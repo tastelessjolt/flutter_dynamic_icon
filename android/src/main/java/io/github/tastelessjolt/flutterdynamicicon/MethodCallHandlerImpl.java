@@ -19,11 +19,10 @@ class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
     if (call.method.equals("mSupportsAlternateIcons")) {
       result.success(true);
     } else if (call.method.equals("mGetAlternateIconName")) {
-      ActivityInfo activityInfo = IconChanger.getCurrentEnabledIcon(context);
-      result.success(Helper.getIconNameFromActivity(activityInfo.name));
+      ActivityInfo activityInfo = IconChanger.getCurrentEnabledAlias(context);
+      result.success(activityInfo != null ? Helper.getIconNameFromActivity(activityInfo.name) : null);
     } else if (call.method.equals("mSetAlternateIconName")) {
       String iconName = call.argument("iconName");
-      if(iconName == null) iconName = "MainActivity";
       IconChanger.enableIcon(context, iconName);
     } else if (call.method.equals("mGetApplicationIconBadgeNumber")) {
       result.error("Not supported", "Not supported on Android", null);

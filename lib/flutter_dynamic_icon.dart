@@ -25,7 +25,7 @@ class FlutterDynamicIcon {
   }
 
   /// Sets [iconName] as the current icon for the app.
-  /// Pass `null` to set the default icon. 
+  /// Pass `null` to set the default icon.
   ///
   /// Throws a [PlatformException] with description if
   /// it can't find [iconName] or there's any other error
@@ -41,7 +41,6 @@ class FlutterDynamicIcon {
   ///
   /// The default value of this property is `0` (to show no batch)
   static Future<int> getApplicationIconBadgeNumber() async {
-    if(!Platform.isIOS) return 0; // This functionality is avaible only on iOS
     final int batchIconNumber =
         await _channel.invokeMethod('mGetApplicationIconBadgeNumber');
     return batchIconNumber;
@@ -53,7 +52,6 @@ class FlutterDynamicIcon {
   ///
   /// Throws a [PlatformException] in case an error
   static Future setApplicationIconBadgeNumber(int batchIconNumber) async {
-    if(!Platform.isIOS) return; // This functionality is avaible only on iOS
     await _channel.invokeMethod('mSetApplicationIconBadgeNumber',
         <String, Object>{'batchIconNumber': batchIconNumber});
   }

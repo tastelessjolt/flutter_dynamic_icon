@@ -3,14 +3,19 @@ package io.github.tastelessjolt.flutterdynamicicon;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ComponentInfo;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import io.flutter.Log;
+
 public class Helper {
+    static private String TAG = "flutterdynamicicon.Helper";
 
     public static boolean isComponentEnabled(PackageManager pm, String pkgName, String clsName) {
         ComponentName componentName = new ComponentName(pkgName, clsName);
@@ -26,9 +31,6 @@ public class Helper {
                 // We need to get the application info to get the component's default state
                 try {
                     PackageInfo packageInfo = pm.getPackageInfo(pkgName, PackageManager.GET_ACTIVITIES
-                            | PackageManager.GET_RECEIVERS
-                            | PackageManager.GET_SERVICES
-                            | PackageManager.GET_PROVIDERS
                             | PackageManager.GET_DISABLED_COMPONENTS);
 
                     List<ComponentInfo> components = new ArrayList<>();
@@ -49,12 +51,31 @@ public class Helper {
         }
     }
 
-    public static ComponentName getComponentName(Context context, String activityName) {
+    public static List<ComponentName> getComponentNames(Context context, String activityName) {
         String packageName = context.getPackageName();
+        if (activityName == null) {
+            PackageManager pm = context.getPackageManager();
+            ArrayList<ComponentName> components = new ArrayList<ComponentName>();
+            try {
+                PackageInfo info = pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES | PackageManager.GET_DISABLED_COMPONENTS);
+                ActivityInfo enabled = null;
+                for(ActivityInfo activityInfo: info.activities) {
+                    Log.d("IconChangerGetComps", activityInfo.name.toString());
+                    if(activityInfo.targetActivity == null) {
+                        components.add(new ComponentName(packageName, activityInfo.name));
+                    }
+                }
+            } catch (PackageManager.NameNotFoundException e) {
+                // the package isn't installed on the device
+                Log.d(TAG, "the package isn't installed on the device");
+            }
+            return components;
+        }
+
         String componentName = String.format("%s.%s", packageName, activityName);
 
         ComponentName component = new ComponentName(packageName, componentName);
-        return component;
+        return Arrays.asList(component);
     }
 
     public static String getIconNameFromActivity(String activity) {
