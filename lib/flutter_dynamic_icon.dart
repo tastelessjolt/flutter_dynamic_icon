@@ -17,8 +17,8 @@ class FlutterDynamicIcon {
   /// Fetches the current iconName
   ///
   /// Returns `null` if the current icon is the default icon
-  static Future<String> getAlternateIconName() async {
-    final String altIconName =
+  static Future<String?> getAlternateIconName() async {
+    final String? altIconName =
         await _channel.invokeMethod('mGetAlternateIconName');
     return altIconName;
   }
@@ -27,10 +27,10 @@ class FlutterDynamicIcon {
   ///
   /// Throws a [PlatformException] with description if
   /// it can't find [iconName] or there's any other error
-  static Future setAlternateIconName(String iconName) async {
+  static Future setAlternateIconName(String? iconName) async {
     await _channel.invokeMethod(
       'mSetAlternateIconName',
-      <String, Object>{'iconName': iconName},
+      <String, dynamic>{'iconName': iconName},
     );
   }
 

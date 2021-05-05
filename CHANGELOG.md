@@ -1,3 +1,7 @@
+## 2.0.0
+
+* Update sdk dependencies to support null safety
+
 ## 1.1.0
 
 * Fix pubspec.yml (plugin was at the wrong place)
