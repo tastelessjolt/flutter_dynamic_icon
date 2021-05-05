@@ -1,6 +1,6 @@
 ## 2.0.0
 
-* Update sdk dependencies to support null safety
+* Update sdk dependencies to support null safety (Thanks to @nohli PR #12)
 
 ## 1.1.0
 
