@@ -22,7 +22,10 @@ To integrate your plugin into the iOS part of your app, follow these steps
     * `teamfortress@2x.png`, `teamfortress@3x.png` 
     * `photos@2x.png`, `photos@3x.png`, 
     * `chills@2x.png`, `chills@3x.png`,
-2. These icons shouldn't be kept in `Assets.xcassets` folder, but outside. Here is my directory structure:
+2. These icons shouldn't be kept in `Assets.xcassets` folder, but outside. When copying to Xcode, you can select 'create folder references' or 'create groups', if not you will get and error when uploading the build to the AppStore saying: (Thanks to @nohli for this observation)
+`TMS-90032: Invalid Image Path - - No image found at the path referenced under key 'CFBundleAlternateIcons':...`
+
+Here is my directory structure:
 
 ![directory_structure](https://raw.githubusercontent.com/tastelessjolt/flutter_dynamic_icon/master/imgs/directory_structure.png)
 
