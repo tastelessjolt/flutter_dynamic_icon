@@ -34,7 +34,7 @@ Here is my directory structure:
     2. Add `CFBundleAlternateIcons` as a dictionary, it is used for alternative icons
     3. Set 3 dictionaries under `CFBundleAlternateIcons`, they are correspond to `teamfortress`, `photos`, and `chills`
     4. For each dictionary, two properties — `UIPrerenderedIcon` and `CFBundleIconFiles` need to be configured
-	5. If the sub-property `UINewsstandIcon` is showing under `Icon files (iOS 5)` and you don't play on using it (it is intended for use with Newstand features), erase it or the app will get rejected upon submission on the App Store
+	5. If the sub-property `UINewsstandIcon` is showing under `Icon files (iOS 5)` and you don't plan on using it (it is intended for use with Newstand features), erase it or the app will get rejected upon submission on the App Store
 
 
 Note that if you need it work for iPads, You need to add these icon declarations in `CFBundleIcons~ipad` as well. [See here](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/TP40009249-SW14) for more details.
