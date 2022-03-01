@@ -29,15 +29,42 @@
                     if (iconName == [NSNull null]) {
                         iconName = nil;
                     }
-                    [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError * _Nullable error) {
-                        if(error) {
-                            result([FlutterError errorWithCode:@"Failed to set icon"
-                                                    message:[error description]
-                                                    details:nil]);
-                        } else {
-                            result(nil);
+                    
+                    NSNumber *showAlertBoolean = call.arguments[@"showAlert"];
+
+                    if([showAlertBoolean isEqualToNumber:[NSNumber numberWithBool:NO]]){
+                        NSMutableString *selectorString = [[NSMutableString alloc] initWithCapacity:40];
+                        [selectorString appendString:@"_setAlternate"];
+                        [selectorString appendString:@"IconName:"];
+                        [selectorString appendString:@"completionHandler:"];
+
+                        SEL selector = NSSelectorFromString(selectorString);
+                        IMP imp = [[UIApplication sharedApplication] methodForSelector:selector];
+                        void (*func)(id, SEL, id, id) = (void *)imp;
+                        if (func)
+                        {
+                            func([UIApplication sharedApplication], selector, iconName, ^(NSError * _Nullable error) {
+                                if(error) {
+                                    result([FlutterError errorWithCode:@"Failed to set icon"
+                                                            message:[error description]
+                                                            details:nil]);
+                                } else {
+                                    result(nil);
+                                }
+                            });
                         }
-                    }];
+                        
+                    } else {
+                        [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError * _Nullable error) {
+                            if(error) {
+                                result([FlutterError errorWithCode:@"Failed to set icon"
+                                                        message:[error description]
+                                                        details:nil]);
+                            } else {
+                                result(nil);
+                            }
+                        }];
+                    }
                 }
                 @catch (NSException *exception) {
                     NSLog(@"%@", exception.reason);

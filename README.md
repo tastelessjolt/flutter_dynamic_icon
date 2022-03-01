@@ -22,7 +22,10 @@ To integrate your plugin into the iOS part of your app, follow these steps
     * `teamfortress@2x.png`, `teamfortress@3x.png` 
     * `photos@2x.png`, `photos@3x.png`, 
     * `chills@2x.png`, `chills@3x.png`,
-2. These icons shouldn't be kept in `Assets.xcassets` folder, but outside. Here is my directory structure:
+2. These icons shouldn't be kept in `Assets.xcassets` folder, but outside. When copying to Xcode, you can select 'create folder references' or 'create groups', if not you will get and error when uploading the build to the AppStore saying: (Thanks to @nohli for this observation)
+`TMS-90032: Invalid Image Path - - No image found at the path referenced under key 'CFBundleAlternateIcons':...`
+
+Here is my directory structure:
 
 ![directory_structure](https://raw.githubusercontent.com/tastelessjolt/flutter_dynamic_icon/master/imgs/directory_structure.png)
 
@@ -31,6 +34,7 @@ To integrate your plugin into the iOS part of your app, follow these steps
     2. Add `CFBundleAlternateIcons` as a dictionary, it is used for alternative icons
     3. Set 3 dictionaries under `CFBundleAlternateIcons`, they are correspond to `teamfortress`, `photos`, and `chills`
     4. For each dictionary, two properties — `UIPrerenderedIcon` and `CFBundleIconFiles` need to be configured
+	5. If the sub-property `UINewsstandIcon` is showing under `Icon files (iOS 5)` and you don't plan on using it (it is intended for use with Newstand features), erase it or the app will get rejected upon submission on the App Store
 
 
 Note that if you need it work for iPads, You need to add these icon declarations in `CFBundleIcons~ipad` as well. [See here](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/TP40009249-SW14) for more details.
