@@ -24,6 +24,10 @@ class FlutterDynamicIcon {
 
   /// Sets [iconName] as the current icon for the app
   ///
+  /// [iOS]: Use [showAlert] at your own risk as it uses a private/undocumented API to
+  /// not show the icon change alert. By default, it shows the alert
+  /// Reference: https://stackoverflow.com/questions/43356570/alternate-icon-in-ios-10-3-avoid-notification-dialog-for-icon-change/49730130#49730130
+  ///
   /// Throws a [PlatformException] with description if
   /// it can't find [iconName] or there's any other error
   static Future setAlternateIconName(String? iconName,
