@@ -32,7 +32,7 @@ class FlutterDynamicIcon {
       'mSetAlternateIconName',
       <String, dynamic>{
         'iconName': iconName,
-        'showAlert': showAlert ? 'true' : 'false',
+        'showAlert': showAlert,
       },
     );
   }

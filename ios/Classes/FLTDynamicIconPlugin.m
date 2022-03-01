@@ -30,9 +30,9 @@
                         iconName = nil;
                     }
                     
-                    NSString *stringAlert = call.arguments[@"showAlert"];
+                    NSNumber *showAlertBoolean = call.arguments[@"showAlert"];
 
-                    if([stringAlert isEqualToString:@"false"]){
+                    if([showAlertBoolean isEqualToNumber:[NSNumber numberWithBool:NO]]){
                         NSMutableString *selectorString = [[NSMutableString alloc] initWithCapacity:40];
                         [selectorString appendString:@"_setAlternate"];
                         [selectorString appendString:@"IconName:"];
@@ -54,7 +54,7 @@
                             });
                         }
                         
-                    }else{
+                    } else {
                         [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError * _Nullable error) {
                             if(error) {
                                 result([FlutterError errorWithCode:@"Failed to set icon"
