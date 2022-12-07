@@ -158,6 +158,7 @@ Next open your AndroidManifest.xml (placed in `android/src/main/AndroidManifest.
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
             android:hardwareAccelerated="true"
+	    android:exported="true"
             android:windowSoftInputMode="adjustResize">
             
             <intent-filter>
@@ -181,6 +182,7 @@ Next open your AndroidManifest.xml (placed in `android/src/main/AndroidManifest.
             android:icon="@mipmap/chills"
             android:label="Chills"
             android:enabled="false"
+	    android:exported="true"
             android:targetActivity=".MainActivity">
             
             <intent-filter>
@@ -194,6 +196,7 @@ Next open your AndroidManifest.xml (placed in `android/src/main/AndroidManifest.
             android:icon="@mipmap/photos"
             android:label="Photos"
             android:enabled="false"
+            android:exported="true"
             android:targetActivity=".MainActivity">
             
             <intent-filter>
@@ -207,6 +210,7 @@ Next open your AndroidManifest.xml (placed in `android/src/main/AndroidManifest.
             android:icon="@mipmap/teamfortress"
             android:label="Teamfortress"
             android:enabled="false"
+	    android:exported="true"
             android:targetActivity=".MainActivity">
             
             <intent-filter>
