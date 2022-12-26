@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 
 class FlutterDynamicIcon {
@@ -16,35 +18,30 @@ class FlutterDynamicIcon {
   /// Fetches the current iconName
   ///
   /// Returns `null` if the current icon is the default icon
-  static Future<String?> getAlternateIconName() async {
-    final String? altIconName =
+  static Future<String> getAlternateIconName() async {
+    final String altIconName =
         await _channel.invokeMethod('mGetAlternateIconName');
     return altIconName;
   }
 
-  /// Sets [iconName] as the current icon for the app
-  ///
-  /// [iOS]: Use [showAlert] at your own risk as it uses a private/undocumented API to
-  /// not show the icon change alert. By default, it shows the alert
-  /// Reference: https://stackoverflow.com/questions/43356570/alternate-icon-in-ios-10-3-avoid-notification-dialog-for-icon-change/49730130#49730130
+  /// Sets [iconName] as the current icon for the app.
+  /// Pass `null` to set the default icon. 
   ///
   /// Throws a [PlatformException] with description if
   /// it can't find [iconName] or there's any other error
-  static Future setAlternateIconName(String? iconName,
-      {bool showAlert = true}) async {
+  static Future setAlternateIconName(String iconName) async {
     await _channel.invokeMethod(
       'mSetAlternateIconName',
-      <String, dynamic>{
-        'iconName': iconName,
-        'showAlert': showAlert,
-      },
+      <String, Object>{'iconName': iconName},
     );
   }
 
   /// Fetches the icon batch number
+  /// On Android there is no batch number, so the method will return 0
   ///
   /// The default value of this property is `0` (to show no batch)
   static Future<int> getApplicationIconBadgeNumber() async {
+    if(!Platform.isIOS) return 0; // This functionality is avaible only on iOS
     final int batchIconNumber =
         await _channel.invokeMethod('mGetApplicationIconBadgeNumber');
     return batchIconNumber;
@@ -56,6 +53,7 @@ class FlutterDynamicIcon {
   ///
   /// Throws a [PlatformException] in case an error
   static Future setApplicationIconBadgeNumber(int batchIconNumber) async {
+    if(!Platform.isIOS) return; // This functionality is avaible only on iOS
     await _channel.invokeMethod('mSetApplicationIconBadgeNumber',
         <String, Object>{'batchIconNumber': batchIconNumber});
   }
