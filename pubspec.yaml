@@ -6,8 +6,8 @@ repository: https://github.com/tastelessjolt/flutter_dynamic_icon
 issue_tracker: https://github.com/tastelessjolt/flutter_dynamic_icon/issues
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
-  flutter: ">=1.10.0 <2.0.0"
+  sdk: ">=2.18.4 <3.0.0"
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:

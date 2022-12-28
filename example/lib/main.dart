@@ -31,13 +31,13 @@ class _MyAppState extends State<MyApp> {
 
     FlutterDynamicIcon.getAlternateIconName().then((v) {
       setState(() {
-        currentIconName = v ?? "`primary`";
+        currentIconName = v;
       });
     });
   }
 
   /// Changes the icon
-  Future<void> _changeIcon(String iconName) async {
+  Future<void> _changeIcon(String? iconName) async {
     try {
       // Check if the device supports alternative icons
       bool supportAltIcons = await FlutterDynamicIcon.supportsAlternateIcons;
@@ -45,14 +45,16 @@ class _MyAppState extends State<MyApp> {
 
       if (supportAltIcons) {
         // Make the icon swapping
-        await FlutterDynamicIcon.setAlternateIconName(iconName);
+        await FlutterDynamicIcon.setAlternateIconName(
+          iconName ?? "ic_launcher",
+        );
 
         log("App icon changed successful");
 
         // To confirm the swap try get the current icon name
         String newIconName = await FlutterDynamicIcon.getAlternateIconName();
         setState(() {
-          currentIconName = newIconName ?? "`primary`";
+          currentIconName = newIconName;
         });
       }
     } on PlatformException catch (e) {
@@ -142,13 +144,6 @@ class _MyAppState extends State<MyApp> {
               IconButton(
                 icon: Icon(Icons.ac_unit),
                 onPressed: () => _changeIcon("chills"),
-              ),
-              SizedBox(
-                height: 28,
-              ),
-              IconButton(
-                icon: Icon(Icons.restore_outlined),
-                onPressed: () => _changeIcon(null),
               ),
             ],
           ),
