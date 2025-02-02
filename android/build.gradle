@@ -23,7 +23,6 @@ apply plugin: 'com.android.library'
 
 android {
     namespace "io.github.tastelessjolt.flutterdynamicicon"
-    compileSdkVersion 33
 
     compileSdkVersion 31
 
